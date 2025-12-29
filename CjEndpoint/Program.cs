@@ -1,4 +1,68 @@
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+// ------------------------
+// CORS POLICY
+// ------------------------
+// CORS is only required when a browser (JS frontend) calls this API from a different origin.
+// For server-to-server API calls (like your Flow API calling this Areas API), CORS is NOT needed.
+// Here we define a safe, flexible policy for testing or future frontend usage.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()    // In production, replace with specific origins like "https://your-flow-api.com"
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
+var app = builder.Build();
+
+app.UseCors("AllowAll"); // Apply CORS globally
+
+// ------------------------
+// Sample Data
+// ------------------------
+var areas = new[]
+{
+    new { id = "lekki", title = "Lekki Phase 1", fee = 1500, active = true },
+    new { id = "ikeja", title = "Ikeja GRA", fee = 1000, active = true },
+    new { id = "yaba", title = "Yaba", fee = 800, active = false }
+};
+
+// ------------------------
+// Endpoints
+// ------------------------
+
+// Health check endpoint
+app.MapGet("/healthz", () => Results.Ok("Healthy"));
+
+// GET /api/areas - returns only active areas
+app.MapGet("/api/areas", () =>
+{
+    var activeAreas = areas
+        .Where(a => a.active)
+        .Select(a => new { a.id, a.title, a.fee });
+
+    return Results.Ok(activeAreas);
+});
+
+app.Run();
+
+
+
+
+
+
+
+
+
 
 
 // using CjEndpoint.Services;
