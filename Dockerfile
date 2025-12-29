@@ -3,15 +3,16 @@
 # BUILD STAGE
 # =========================
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore
-COPY CjEndpoint.csproj ./
-RUN dotnet restore
+# Copy the project file and restore dependencies
+COPY ["CjEndpoint/CjEndpoint.csproj", "CjEndpoint/"]
+RUN dotnet restore "CjEndpoint/CjEndpoint.csproj"
 
-# Copy everything else and publish
+# Copy the rest of the source and publish
 COPY . .
-RUN dotnet publish -c Release -o out
+WORKDIR /src/CjEndpoint
+RUN dotnet publish "CjEndpoint.csproj" -c Release -o /app/out
 
 # =========================
 # RUNTIME STAGE
