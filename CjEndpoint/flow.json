@@ -1,0 +1,21 @@
+
+
+{
+    "screens":[
+        {
+            "data":{},
+            "id":"screen_asnlyt",
+            "layout":{
+                "children":[
+                    {
+                        "children":[
+                            {
+                                "text":"🍕Please fill-in your delivery details","type":"TextHeading"
+                                },
+                                {
+                                    "data-source":[
+                                        {"id":"0_Option_1","title":"Option 1"},{"id":"1_Option_2","title":"Option 2"},{"id":"2_Option","title":"Option"}],
+                                        "label":"📍 Delivery Area","name":"_Delivery_Area_060c5c","required":true,"type":"Dropdown"
+                                        },
+                                        {
+                                            "input-type":"text","label":"Full Address","name":"Full_Address_e27e24","required":true,"type":"TextInput","helper-text":"e.g 5, ojo street okoro B/stop"},{"input-type":"phone","label":"Telephone Number","name":"Telephone_Number_4fdd78","required":true,"type":"TextInput"},{"label":"Continue","on-click-action":{"name":"navigate","next":{"name":"screen_igvcep","type":"screen"},"payload":{"screen_0__Delivery_Area_0":"${form._Delivery_Area_060c5c}","screen_0_Full_Address_1":"${form.Full_Address_e27e24}","screen_0_Telephone_Number_2":"${form.Telephone_Number_4fdd78}"}},"type":"Footer"}],"name":"flow_path","type":"Form"}],"type":"SingleColumnLayout"},"title":"ADDRESS"},{"data":{"screen_0__Delivery_Area_0":{"__example__":"Example","type":"string"},"screen_0_Full_Address_1":{"__example__":"Example","type":"string"},"screen_0_Telephone_Number_2":{"__example__":"Example","type":"string"}},"id":"screen_igvcep","layout":{"children":[{"children":[{"text":"area : option1 (lekki)\n","type":"TextSubheading"},{"text":"location:5,0jo street\n","type":"TextSubheading"},{"text":"tel:08029696","type":"TextSubheading"},{"label":"additional note","name":"additional_note_5576a8","required":false,"type":"TextArea","helper-text":"e.g more sauce,puck, etc"},{"label":"Confirm","on-click-action":{"name":"complete","payload":{"screen_1_additional_note_0":"${form.additional_note_5576a8}","screen_0__Delivery_Area_0":"${data.screen_0__Delivery_Area_0}","screen_0_Full_Address_1":"${data.screen_0_Full_Address_1}","screen_0_Telephone_Number_2":"${data.screen_0_Telephone_Number_2}"}},"type":"Footer"}],"name":"flow_path","type":"Form"}],"type":"SingleColumnLayout"},"terminal":true,"title":"confirm details"}],"version":"7.3"}

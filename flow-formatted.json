@@ -1,0 +1,138 @@
+{
+  "version": "7.3",
+  "screens": [
+    {
+      "id": "screen_asnlyt",
+      "title": "ADDRESS",
+      "data": {},
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              {
+                "type": "TextHeading",
+                "text": "🍕Please fill-in your delivery details"
+              },
+              {
+                "type": "Dropdown",
+                "name": "_Delivery_Area_060c5c",
+                "label": "📍 Delivery Area",
+                "required": true,
+                "data-source": [
+                  {
+                    "id": "0_Option_1",
+                    "title": "Option 1"
+                  },
+                  {
+                    "id": "1_Option_2",
+                    "title": "Option 2"
+                  },
+                  {
+                    "id": "2_Option",
+                    "title": "Option"
+                  }
+                ]
+              },
+              {
+                "type": "TextInput",
+                "name": "Full_Address_e27e24",
+                "label": "Full Address",
+                "required": true,
+                "input-type": "text",
+                "helper-text": "e.g 5, ojo street okoro B/stop"
+              },
+              {
+                "type": "TextInput",
+                "name": "Telephone_Number_4fdd78",
+                "label": "Telephone Number",
+                "required": true,
+                "input-type": "phone"
+              },
+              {
+                "type": "Footer",
+                "label": "Continue",
+                "on-click-action": {
+                  "name": "navigate",
+                  "next": {
+                    "type": "screen",
+                    "name": "screen_igvcep"
+                  },
+                  "payload": {
+                    "screen_0__Delivery_Area_0": "${form._Delivery_Area_060c5c}",
+                    "screen_0_Full_Address_1": "${form.Full_Address_e27e24}",
+                    "screen_0_Telephone_Number_2": "${form.Telephone_Number_4fdd78}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen_igvcep",
+      "title": "confirm details",
+      "terminal": true,
+      "data": {
+        "screen_0__Delivery_Area_0": {
+          "type": "string",
+          "__example__": "Example"
+        },
+        "screen_0_Full_Address_1": {
+          "type": "string",
+          "__example__": "Example"
+        },
+        "screen_0_Telephone_Number_2": {
+          "type": "string",
+          "__example__": "Example"
+        }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              {
+                "type": "TextSubheading",
+                "text": "area : option1 (lekki)\n"
+              },
+              {
+                "type": "TextSubheading",
+                "text": "location:5,0jo street\n"
+              },
+              {
+                "type": "TextSubheading",
+                "text": "tel:08029696"
+              },
+              {
+                "type": "TextArea",
+                "name": "additional_note_5576a8",
+                "label": "additional note",
+                "required": false,
+                "helper-text": "e.g more sauce,puck, etc"
+              },
+              {
+                "type": "Footer",
+                "label": "Confirm",
+                "on-click-action": {
+                  "name": "complete",
+                  "payload": {
+                    "screen_1_additional_note_0": "${form.additional_note_5576a8}",
+                    "screen_0__Delivery_Area_0": "${data.screen_0__Delivery_Area_0}",
+                    "screen_0_Full_Address_1": "${data.screen_0_Full_Address_1}",
+                    "screen_0_Telephone_Number_2": "${data.screen_0_Telephone_Number_2}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
